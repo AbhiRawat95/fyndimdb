@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.director }}
+{{ object.imdb_score }}
+{{ object.popularity }}
+{{ object.genre }}
