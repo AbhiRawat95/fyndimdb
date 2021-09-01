@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%(z_p=h1t**qp4nv*4_7hj1uz8#==cvzuvn(@wgi1z$1m1#c^a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fynd-imdb-search.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'fyndimdb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dc94v4t1rpq6gm',
+        'HOST':'ec2-54-145-188-92.compute-1.amazonaws.com',
+        'PORT':5432,
+        'USER':'drrexpqfqmndvm',
+        'PASSWORD':'fc2c87a257f802a7c90cebed62198950a8316b8f3e5f2f6873d9ac43d68ced24'
     }
 }
 
