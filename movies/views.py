@@ -8,6 +8,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDe
 from rest_framework.response import Response
 from haystack.generic_views import SearchView
 from movies.serializers import *
+from rest_framework.throttling import UserRateThrottle,AnonRateThrottle
 
 
 class MovieDataInsertion(viewsets.GenericViewSet):
@@ -34,6 +35,7 @@ class MoviesListingPage(ListAPIView):
     permission_classes = ()
     serializer_class = MovieSearchSerializer
     queryset = SearchQuerySet().all()
+    throttle_classes = [UserRateThrottle,AnonRateThrottle]
 
     def list(self,request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
