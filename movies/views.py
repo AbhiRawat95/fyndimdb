@@ -2,7 +2,7 @@ from haystack.backends import SQ
 from haystack.query import SearchQuerySet, EmptySearchQuerySet
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser
 from rest_framework import generics, status
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
@@ -11,7 +11,11 @@ from movies.serializers import *
 
 
 class MovieDataInsertion(viewsets.GenericViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
+    serializer_class = MovieSearchSerializer
+
+    """This api allows you to insert movies in a bulk form, so initial payload was inserted into the db by using this 
+    API only. API is accessible only by staff or super user."""
 
     @action(methods=['post'],detail=False)
     def insert_movie_data(self, request):
@@ -42,11 +46,13 @@ class MoviesListingPage(ListAPIView):
 
 
 class AdminMoviesCreateAPI(CreateAPIView):
+    permission_classes = [IsAdminUser]
     queryset = Movie.objects.all()
     serializer_class = MovieAddSearchSerializer
 
 
 class AdminMoviesUpdateDeleteAPI(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAdminUser]
     queryset = Movie.objects.all()
     serializer_class = MovieAddSearchSerializer
     lookup_field = 'id'

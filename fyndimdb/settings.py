@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%(z_p=h1t**qp4nv*4_7hj1uz8#==cvzuvn(@wgi1z$1m1#c^a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fynd-imdb-search.herokuapp.com', '127.0.0.1','evening-retreat-16919.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'haystack',
     'rest_framework',
-    'movies'
+    'movies',
+    'rest_framework_swagger'
 ]
 
 MIDDLEWARE = [
@@ -145,5 +146,6 @@ HAYSTACK_CONNECTIONS = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 20,
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
